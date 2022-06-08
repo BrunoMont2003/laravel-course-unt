@@ -22,7 +22,7 @@
     </div>
     <div class="content">
 
-        <form method="POST" action="{{ route('identify') }}">
+        <form method="POST" action="{{ route('verificar') }}">
             @csrf
             <h4 class="form-title">Inicio de Sesión</h4>
             <div class="form-group">

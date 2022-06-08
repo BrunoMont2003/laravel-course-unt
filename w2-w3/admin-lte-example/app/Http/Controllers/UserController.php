@@ -14,30 +14,26 @@ class UserController extends Controller
     }
     public function verifyLogin(Request $request)
     {
-        // dd($request->all());
-        $data = $request->validate(
+        $data = request()->validate(
             [
                 'name' => 'required',
-                'password' => 'required',
+                'password' => 'required'
             ],
             [
-                'name.required' => 'Enter User',
-                'password.required' => 'Enter Password'
+                'name.required' => 'Ingrese Usuario',
+                'password.required' => 'Ingrese contraseña',
             ]
         );
-
         if (Auth::attempt($data)) {
-
             $con = 'OK';
         }
-
         $name = $request->get('name');
-        $query = User::where('name', $name)->get();
+        $query = User::where('name', '=', $name)->get();
         if ($query->count() != 0) {
             $hashp = $query[0]->password;
             $password = $request->get('password');
-            dd(password_verify($hashp, $password));
-            if (password_verify($hashp, $password)) {
+            // dd(['contra guardada' => $hashp, 'contra ingresada' => $password, 'son iguales ' => password_verify($password, $hashp)]);
+            if (password_verify($password, $hashp)) {
                 return redirect()->route('home');
             } else {
                 return back()->withErrors(['password' => 'Invalid password'])->withInput(request(['name', 'password']));
