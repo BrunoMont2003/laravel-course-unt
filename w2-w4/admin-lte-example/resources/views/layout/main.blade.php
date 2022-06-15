@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Blank Page</title>
+    <title> @yield('title') </title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -216,7 +216,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="../../index3.html" class="nav-link">
+                                    <a href="{{ route('category.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Categories</p>
                                     </a>
