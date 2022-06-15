@@ -21,3 +21,4 @@ Route::get('/clients', [ClientsController::class, 'index'])->name('clients');
 Route::get('/login', [UserController::class, 'showLogin'])->name('login');
 Route::post('/identify', [UserController::class, 'verifyLogin'])->name('verificar');
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/logout', [UserController::class, 'salir'])->name('logout');

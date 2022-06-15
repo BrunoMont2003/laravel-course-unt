@@ -245,7 +245,13 @@
                             </ul>
                         </li>
 
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button class="btn btn-danger btn-block" type="submit"><i
+                                    class="fa fa-power-off"></i></button>
+                        </form>
                     </ul>
+
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>

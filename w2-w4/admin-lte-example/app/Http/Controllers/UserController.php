@@ -42,4 +42,9 @@ class UserController extends Controller
             return back()->withErrors(['name' => 'Invalid username'])->withInput(request(['name']));
         }
     }
+    public function salir()
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
 }
