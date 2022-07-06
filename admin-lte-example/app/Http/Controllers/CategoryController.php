@@ -7,20 +7,35 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
+    const PAGINATION = 10;
+    public function index(Request $request)
     {
-        $categories = Category::where('status', '=', 1)->get();
+        $description = $request->get('description');
+        $categories = Category::where('status', '=', 1)->where('description', 'like', '%' . $description . '%')->paginate($this::PAGINATION);
         // dd($categories);
-        return view('category.index', compact('categories'));
+        return view('category.index', compact('categories', 'description'));
     }
     public function create()
     {
-        //
+        return view('category.create');
     }
 
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate(
+            [
+                'description' => 'required|max:30',
+            ],
+            [
+                'description.required' => 'Enter description of category',
+                'description.max' => 'Maximum 30 characters for category description',
+            ]
+        );
+        $category = new Category();
+        $category->description = $validated['description'];
+        $category->status = 1;
+        $category->save();
+        return redirect()->route('category.index')->with('alert', ['type' => 'success', 'message' => 'Category successfully created']);
     }
 
     public function show($id)
@@ -30,12 +45,26 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('category.edit', compact('category'));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate(
+            [
+                'description' => 'required|max:30',
+            ],
+            [
+                'description.required' => 'Enter description of category',
+                'description.max' => 'Maximum 30 characters for category description',
+            ]
+        );
+
+        $category = Category::findOrFail($id);
+        $category->description = $validated['description'];
+        $category->update();
+        return redirect()->route('category.index')->with('alert', ['type' => 'info', 'message' => 'Category successfully updated']);
     }
     public function destroy($id)
     {

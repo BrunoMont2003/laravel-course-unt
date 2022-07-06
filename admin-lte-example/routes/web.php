@@ -24,3 +24,6 @@ Route::post('/identify', [UserController::class, 'verifyLogin'])->name('verifica
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::post('/logout', [UserController::class, 'salir'])->name('logout');
 Route::resource('category', CategoryController::class);
+Route::get('cancel', function () {
+    return redirect()->route('category.index')->with('alert', ['type' => 'danger', 'message' => 'Cancelled action']);
+})->name('cancel');
