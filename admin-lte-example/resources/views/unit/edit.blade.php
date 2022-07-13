@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="mx-5 my-1 d-flex justify-content-between align-items-center">
-        <h1>Edit Category</h1>
+        <h1>Edit Unit</h1>
     </div>
     <form class="row mx-md-5" method="POST" action="{{ route('unit.update', $unit->id) }}">
         @method('put')

@@ -17,7 +17,7 @@ Route::get('cancel', function () {
     return redirect()->route('category.index')->with('alert', ['type' => 'danger', 'message' => 'Cancelled action']);
 })->name('cancel');
 Route::get('category/{id}/confirm', [CategoryController::class, 'confirmDelete'])->name('category.confirm');
-Route::get('unit/{id}/confirm', [CategoryController::class, 'confirmDelete'])->name('unit.confirm');
+Route::get('unit/{id}/confirm', [UnitController::class, 'confirmDelete'])->name('unit.confirm');
 
 Route::resource('category', CategoryController::class);
 Route::resource('unit', UnitController::class);
