@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     const PAGINATION = 10;
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index(Request $request)
     {
         $description = $request->get('description');
