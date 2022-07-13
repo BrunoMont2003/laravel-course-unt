@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UnitController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -16,5 +17,7 @@ Route::get('cancel', function () {
     return redirect()->route('category.index')->with('alert', ['type' => 'danger', 'message' => 'Cancelled action']);
 })->name('cancel');
 Route::get('category/{id}/confirm', [CategoryController::class, 'confirmDelete'])->name('category.confirm');
+Route::get('unit/{id}/confirm', [CategoryController::class, 'confirmDelete'])->name('unit.confirm');
 
 Route::resource('category', CategoryController::class);
+Route::resource('unit', UnitController::class);
