@@ -70,8 +70,16 @@ class CategoryController extends Controller
         $category->update();
         return redirect()->route('category.index')->with('alert', ['type' => 'info', 'message' => 'Category successfully updated']);
     }
+    public function confirmDelete($id)
+    {
+        $category = Category::findOrFail($id);
+        return view('category.confirm', compact('category'));
+    }
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->status = 0;
+        $category->save();
+        return redirect()->route('category.index')->with('alert', ['type' => 'info', 'message' => 'Category has been deleted']);
     }
 }

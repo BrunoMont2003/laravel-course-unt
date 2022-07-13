@@ -42,7 +42,7 @@
                                         href="{{ route('category.edit', $category->id) }}">
                                         <i class="fa fa-edit"></i>
                                         Edit</a>
-                                    <a class="btn btn-danger btn-sm">
+                                    <a class="btn btn-danger btn-sm" href="{{ route('category.confirm', $category->id) }}">
                                         <i class="fa fa-trash"></i>
                                         Delete</a>
                                 </td>
