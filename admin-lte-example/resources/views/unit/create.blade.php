@@ -19,7 +19,7 @@
         </div>
         <div class="col-12 mx-2">
             <button type="submit" class="btn btn-primary">Save</button>
-            <a href="{{ route('cancel') }}"class="btn btn-danger">Cancel</a>
+            <a href="{{ route('cancel', 'unit') }}"class="btn btn-danger">Cancel</a>
         </div>
     </form>
 @endsection
